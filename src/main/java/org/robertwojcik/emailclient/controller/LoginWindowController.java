@@ -1,6 +1,5 @@
-package org.robertwojcik.emailclient;
+package org.robertwojcik.emailclient.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;

@@ -11,6 +11,8 @@ module org.robertwojcik.emailclient.emailclient {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens org.robertwojcik.emailclient.emailclient to javafx.fxml;
-    exports org.robertwojcik.emailclient.emailclient;
+    opens org.robertwojcik.emailclient to javafx.fxml;
+    exports org.robertwojcik.emailclient;
+    exports org.robertwojcik.emailclient.controller;
+    opens org.robertwojcik.emailclient.controller to javafx.fxml;
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+
+<AnchorPane prefHeight="586.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.robertwojcik.emailclient.controller.MainWindowController">
+   <children>
+      <MenuBar layoutX="-1.0" layoutY="14.0" prefHeight="28.0" prefWidth="717.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Open" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#optionsAction" text="Options" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TreeView fx:id="emailsTreeView" layoutY="42.0" prefHeight="544.0" prefWidth="214.0" />
+      <TableView fx:id="emailsTableView" layoutX="214.0" layoutY="42.0" prefHeight="200.0" prefWidth="503.0">
+        <columns>
+          <TableColumn prefWidth="95.0" text="Sender" />
+          <TableColumn prefWidth="170.0" text="Subject" />
+            <TableColumn prefWidth="94.0" text="Recipient" />
+            <TableColumn prefWidth="59.0" text="Size" />
+            <TableColumn prefWidth="84.0" text="Date" />
+        </columns>
+      </TableView>
+      <WebView fx:id="emailWebView" layoutX="214.0" layoutY="242.0" prefHeight="344.0" prefWidth="503.0" />
+   </children>
+</AnchorPane>
