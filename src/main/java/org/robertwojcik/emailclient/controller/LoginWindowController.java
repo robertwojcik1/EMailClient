@@ -30,16 +30,31 @@ public class LoginWindowController extends BaseController {
         if (fieldsAreValid()) {
             EmailAccount emailAccount = new EmailAccount(emailAddressField.getText(), passwordField.getText());
             LoginService loginService = new LoginService(emailAccount, emailManager);
-            EmailLoginResult loginResult = loginService.login();
+            loginService.start();
+            loginService.setOnSucceeded(event -> {
+                EmailLoginResult loginResult = loginService.getValue();
 
-            switch (loginResult) {
-                case SUCCESS:
-                    System.out.println("Login successfull");
-            }
+                switch (loginResult) {
+                    case SUCCESS:
+                        System.out.println("Login successfull");
+                        viewFactory.showMainWindow();
+                        Stage stage = (Stage) errorLabel.getScene().getWindow();
+                        viewFactory.closeStage(stage);
+                        return;
+                    case FAILED_BY_CREDENTIALS:
+                        errorLabel.setText("Invalid credentials");
+                        return;
+                    case FAILED_BY_UNEXPECTED_ERROR:
+                        errorLabel.setText("Unexpected error");
+                        return;
+                    case FAILED_BY_NETWORK:
+                        errorLabel.setText("Network error");
+                        return;
+                    default:
+                        return;
+                }
+            });
         }
-        viewFactory.showMainWindow();
-        Stage stage = (Stage) errorLabel.getScene().getWindow();
-        viewFactory.closeStage(stage);
     }
 
     private boolean fieldsAreValid() {

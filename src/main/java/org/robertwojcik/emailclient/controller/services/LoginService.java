@@ -1,12 +1,14 @@
 package org.robertwojcik.emailclient.controller.services;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import org.robertwojcik.emailclient.EmailManager;
 import org.robertwojcik.emailclient.controller.EmailLoginResult;
 import org.robertwojcik.emailclient.model.EmailAccount;
 
 import javax.mail.*;
 
-public class LoginService {
+public class LoginService extends Service<EmailLoginResult> {
     EmailAccount emailAccount;
     EmailManager emailManager;
 
@@ -15,7 +17,7 @@ public class LoginService {
         this.emailManager = emailManager;
     }
 
-    public EmailLoginResult login() {
+    private EmailLoginResult login() {
         Authenticator authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -46,6 +48,16 @@ public class LoginService {
             return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
         }
         return EmailLoginResult.SUCCESS;
+    }
+
+    @Override
+    protected Task<EmailLoginResult> createTask() {
+        return new Task<EmailLoginResult>() {
+            @Override
+            protected EmailLoginResult call() throws Exception {
+                return login();
+            }
+        };
     }
 }
 
