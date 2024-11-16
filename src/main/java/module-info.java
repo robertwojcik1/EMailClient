@@ -10,6 +10,8 @@ module org.robertwojcik.emailclient.emailclient {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.activation;
+    requires java.mail;
 
     opens org.robertwojcik.emailclient to javafx.fxml;
     exports org.robertwojcik.emailclient;
