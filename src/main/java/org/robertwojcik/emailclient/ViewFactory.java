@@ -7,12 +7,32 @@ import javafx.stage.Stage;
 import org.robertwojcik.emailclient.controller.BaseController;
 import org.robertwojcik.emailclient.controller.LoginWindowController;
 import org.robertwojcik.emailclient.controller.MainWindowController;
+import org.robertwojcik.emailclient.controller.OptionsWindowController;
 
 import java.io.IOException;
 
 public class ViewFactory {
 
     private EmailManager emailManager;
+    private ColorTheme colorTheme = ColorTheme.DEFAULT;
+
+    public ColorTheme getColorTheme() {
+        return colorTheme;
+    }
+
+    public void setColorTheme(ColorTheme colorTheme) {
+        this.colorTheme = colorTheme;
+    }
+
+    public FontSize getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(FontSize fontSize) {
+        this.fontSize = fontSize;
+    }
+
+    private FontSize fontSize = FontSize.MEDIUM;
 
     public ViewFactory(EmailManager emailManager) {
         this.emailManager = emailManager;
@@ -31,6 +51,14 @@ public class ViewFactory {
 
         BaseController controller = new MainWindowController(emailManager,
                 this, "MainWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showOptionsWindow() {
+        System.out.println("opts window called");
+
+        BaseController controller = new OptionsWindowController(emailManager,
+                this, "OptionsWindow.fxml");
         initializeStage(controller);
     }
 
