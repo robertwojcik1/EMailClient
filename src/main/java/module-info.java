@@ -15,4 +15,6 @@ module org.robertwojcik.emailclient.emailclient {
     exports org.robertwojcik.emailclient;
     exports org.robertwojcik.emailclient.controller;
     opens org.robertwojcik.emailclient.controller to javafx.fxml;
+    exports org.robertwojcik.emailclient.view;
+    opens org.robertwojcik.emailclient.view to javafx.fxml;
 }

@@ -8,13 +8,17 @@ import org.robertwojcik.emailclient.controller.BaseController;
 import org.robertwojcik.emailclient.controller.LoginWindowController;
 import org.robertwojcik.emailclient.controller.MainWindowController;
 import org.robertwojcik.emailclient.controller.OptionsWindowController;
+import org.robertwojcik.emailclient.view.ColorTheme;
+import org.robertwojcik.emailclient.view.FontSize;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewFactory {
 
     private EmailManager emailManager;
     private ColorTheme colorTheme = ColorTheme.DEFAULT;
+    private ArrayList<Stage> activeStages;
 
     public ColorTheme getColorTheme() {
         return colorTheme;
@@ -36,6 +40,7 @@ public class ViewFactory {
 
     public ViewFactory(EmailManager emailManager) {
         this.emailManager = emailManager;
+        activeStages = new ArrayList<>();
     }
 
     public void showLoginWindow() {
@@ -79,9 +84,21 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+        activeStages.add(stage);
     }
 
     public void closeStage(Stage stageToClose) {
         stageToClose.close();
+        activeStages.remove(stageToClose);
+    }
+
+    public void updateStyles() {
+        for (Stage stage : activeStages) {
+            Scene scene = stage.getScene();
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
+
+        }
     }
 }
