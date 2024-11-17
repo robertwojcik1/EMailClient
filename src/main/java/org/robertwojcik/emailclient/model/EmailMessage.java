@@ -27,27 +27,27 @@ public class EmailMessage {
     }
 
     public String getSubject() {
-        return this.subject.get();
+        return subject.get();
     }
     public String getSender() {
-        return this.sender.get();
+        return sender.get();
     }
     public String getRecipient() {
-        return this.recipient.get();
+        return recipient.get();
     }
     public Integer getSize() {
-        return this.size.get();
+        return size.get();
     }
     public Date getDate() {
-        return this.date.get();
+        return date.get();
     }
     public boolean isRead() {
-        return this.isRead;
+        return isRead;
     }
     public void setRead(boolean read) {
         isRead = read;
     }
     public Message getMessage() {
-       return this.message;
+       return message;
     }
 }
