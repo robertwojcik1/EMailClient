@@ -13,6 +13,7 @@ import org.robertwojcik.emailclient.EmailManager;
 import org.robertwojcik.emailclient.ViewFactory;
 import org.robertwojcik.emailclient.model.EmailMessage;
 import org.robertwojcik.emailclient.model.EmailTreeItem;
+import org.robertwojcik.emailclient.model.SizeInteger;
 
 import java.net.URL;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class MainWindowController extends BaseController implements Initializabl
     private TableColumn<EmailMessage, String> senderCol;
 
     @FXML
-    private TableColumn<EmailMessage, Integer> sizeCol;
+    private TableColumn<EmailMessage, SizeInteger> sizeCol;
 
     @FXML
     private TableColumn<EmailMessage, String> subjectCol;

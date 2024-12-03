@@ -12,6 +12,7 @@ module org.robertwojcik.emailclient.emailclient {
     requires com.almasb.fxgl.all;
     requires java.activation;
     requires java.mail;
+    requires annotations;
 
     opens org.robertwojcik.emailclient to javafx.fxml;
     exports org.robertwojcik.emailclient;
