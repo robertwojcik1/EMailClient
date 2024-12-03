@@ -11,6 +11,7 @@ import javafx.scene.web.WebView;
 import javafx.util.Callback;
 import org.robertwojcik.emailclient.EmailManager;
 import org.robertwojcik.emailclient.ViewFactory;
+import org.robertwojcik.emailclient.controller.services.MessageRendererService;
 import org.robertwojcik.emailclient.model.EmailMessage;
 import org.robertwojcik.emailclient.model.EmailTreeItem;
 import org.robertwojcik.emailclient.model.SizeInteger;
@@ -45,6 +46,8 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private TableColumn<EmailMessage, String> subjectCol;
 
+    private MessageRendererService messageRendererService;
+
     public MainWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
         super(emailManager, viewFactory, fxmlName);
     }
@@ -65,6 +68,22 @@ public class MainWindowController extends BaseController implements Initializabl
         setUpEmailTableView();
         setUpFolderSelection();
         setUpBoldRows();
+        setUpMessageRendererService();
+        setUpMessageSelection();
+    }
+
+    private void setUpMessageSelection() {
+        emailsTableView.setOnMouseClicked(event -> {
+            EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
+            if (emailMessage != null) {
+                messageRendererService.setEmailMessage(emailMessage);
+                messageRendererService.restart();
+            }
+        });
+    }
+
+    private void setUpMessageRendererService() {
+        messageRendererService = new MessageRendererService(emailWebView.getEngine());
     }
 
     private void setUpBoldRows() {
