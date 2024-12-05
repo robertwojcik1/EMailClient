@@ -72,16 +72,6 @@ public class MainWindowController extends BaseController implements Initializabl
         setUpMessageSelection();
     }
 
-    private void setUpMessageSelection() {
-        emailsTableView.setOnMouseClicked(event -> {
-            EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
-            if (emailMessage != null) {
-                messageRendererService.setEmailMessage(emailMessage);
-                messageRendererService.restart();
-            }
-        });
-    }
-
     private void setUpMessageRendererService() {
         messageRendererService = new MessageRendererService(emailWebView.getEngine());
     }
@@ -109,9 +99,26 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private void setUpFolderSelection() {
         emailsTreeView.setOnMouseClicked(event -> {
-            EmailTreeItem<String> item = (EmailTreeItem<String>) emailsTreeView.getSelectionModel().getSelectedItem();
+            EmailTreeItem<String> item = (EmailTreeItem<String>) emailsTreeView.getSelectionModel()
+                    .getSelectedItem();
             if (item != null) {
+                emailManager.setSelectedFolder(item);
                 emailsTableView.setItems(item.getEmailMessages());
+            }
+        });
+    }
+
+    private void setUpMessageSelection() {
+        emailsTableView.setOnMouseClicked(event -> {
+            EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
+            if (emailMessage != null) {
+                emailManager.setSelectedMessage(emailMessage);
+                if(!emailMessage.isRead()) {
+                    emailManager.setRead();
+                }
+                emailManager.setSelectedMessage(emailMessage);
+                messageRendererService.setEmailMessage(emailMessage);
+                messageRendererService.restart();
             }
         });
     }
