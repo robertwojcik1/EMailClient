@@ -4,10 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.robertwojcik.emailclient.controller.BaseController;
-import org.robertwojcik.emailclient.controller.LoginWindowController;
-import org.robertwojcik.emailclient.controller.MainWindowController;
-import org.robertwojcik.emailclient.controller.OptionsWindowController;
+import org.robertwojcik.emailclient.controller.*;
 import org.robertwojcik.emailclient.view.ColorTheme;
 import org.robertwojcik.emailclient.view.FontSize;
 
@@ -70,6 +67,14 @@ public class ViewFactory {
 
         BaseController controller = new OptionsWindowController(emailManager,
                 this, "OptionsWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showComposeMessageWindow() {
+        System.out.println("compose message window called");
+
+        BaseController controller = new ComposeMessageController(emailManager,
+                this, "ComposeMessageWindow.fxml");
         initializeStage(controller);
     }
 
