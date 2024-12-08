@@ -1,5 +1,8 @@
 package org.robertwojcik.emailclient;
 
+import com.almasb.fxgl.ui.FXGLCheckBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import org.robertwojcik.emailclient.controller.services.FetchFoldersService;
 import org.robertwojcik.emailclient.controller.services.FolderUpdaterService;
@@ -23,6 +26,8 @@ public class EmailManager {
     private FolderUpdaterService folderUpdaterService;
 
     private EmailTreeItem<String> foldersRoot = new EmailTreeItem<>("");
+
+    private ObservableList<EmailAccount> emailAccounts = FXCollections.observableArrayList();
 
     public EmailManager() {
         this.folderUpdaterService = new FolderUpdaterService(folderList);
@@ -53,7 +58,12 @@ public class EmailManager {
         return folderList;
     }
 
+    public ObservableList<EmailAccount> getEmailAccounts() {
+        return emailAccounts;
+    }
+
     public void addEmailAccount(EmailAccount emailAccount) {
+        emailAccounts.add(emailAccount);
         EmailTreeItem<String> treeItem = new EmailTreeItem<>(emailAccount.getAddress());
         FetchFoldersService fetchFoldersService =
                 new FetchFoldersService(emailAccount.getStore(), treeItem, folderList);
