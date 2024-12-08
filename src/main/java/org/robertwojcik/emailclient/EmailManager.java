@@ -9,6 +9,7 @@ import org.robertwojcik.emailclient.controller.services.FolderUpdaterService;
 import org.robertwojcik.emailclient.model.EmailAccount;
 import org.robertwojcik.emailclient.model.EmailMessage;
 import org.robertwojcik.emailclient.model.EmailTreeItem;
+import org.robertwojcik.emailclient.view.IconResolver;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -28,6 +29,8 @@ public class EmailManager {
     private EmailTreeItem<String> foldersRoot = new EmailTreeItem<>("");
 
     private ObservableList<EmailAccount> emailAccounts = FXCollections.observableArrayList();
+
+    private IconResolver iconResolver = new IconResolver();
 
     public EmailManager() {
         this.folderUpdaterService = new FolderUpdaterService(folderList);
@@ -65,6 +68,7 @@ public class EmailManager {
     public void addEmailAccount(EmailAccount emailAccount) {
         emailAccounts.add(emailAccount);
         EmailTreeItem<String> treeItem = new EmailTreeItem<>(emailAccount.getAddress());
+        treeItem.setGraphic(iconResolver.getIconForFolder(emailAccount.getAddress()));
         FetchFoldersService fetchFoldersService =
                 new FetchFoldersService(emailAccount.getStore(), treeItem, folderList);
         fetchFoldersService.start();
