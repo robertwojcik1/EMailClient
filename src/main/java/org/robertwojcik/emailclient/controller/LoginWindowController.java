@@ -1,6 +1,7 @@
 package org.robertwojcik.emailclient.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -9,6 +10,9 @@ import org.robertwojcik.emailclient.EmailManager;
 import org.robertwojcik.emailclient.ViewFactory;
 import org.robertwojcik.emailclient.controller.services.LoginService;
 import org.robertwojcik.emailclient.model.EmailAccount;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginWindowController extends BaseController {
 
@@ -70,5 +74,6 @@ public class LoginWindowController extends BaseController {
         }
         return true;
     }
+
 
 }
