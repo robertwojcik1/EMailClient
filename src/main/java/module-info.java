@@ -13,6 +13,7 @@ module org.robertwojcik.emailclient.emailclient {
     requires java.activation;
     requires java.mail;
     requires annotations;
+    requires com.fasterxml.jackson.databind;
 
     opens org.robertwojcik.emailclient to javafx.fxml;
     exports org.robertwojcik.emailclient;
