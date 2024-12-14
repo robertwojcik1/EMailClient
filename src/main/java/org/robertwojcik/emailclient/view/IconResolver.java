@@ -11,15 +11,15 @@ public class IconResolver {
         ImageView imageView;
         try {
             if(lowerCaseFolderName.contains("@")) {
-                imageView = new ImageView(new Image(getClass().getResourceAsStream("icons/email.png")));
+                imageView = new ImageView(new Image(getClass().getResourceAsStream("/icons/email.png")));
             } else if(lowerCaseFolderName.contains("inbox")) {
-                imageView = new ImageView(new Image(getClass().getResourceAsStream("icons/inbox.png")));
+                imageView = new ImageView(new Image(getClass().getResourceAsStream("/icons/inbox.png")));
             } else if(lowerCaseFolderName.contains("sent")) {
-                imageView = new ImageView(new Image(getClass().getResourceAsStream("icons/sent2.png")));
+                imageView = new ImageView(new Image(getClass().getResourceAsStream("/icons/sent2.png")));
             } else if(lowerCaseFolderName.contains("spam")) {
-                imageView = new ImageView(new Image(getClass().getResourceAsStream("icons/spam.png")));
+                imageView = new ImageView(new Image(getClass().getResourceAsStream("/icons/spam.png")));
             } else {
-                imageView = new ImageView(new Image(getClass().getResourceAsStream("icons/folder.png")));
+                imageView = new ImageView(new Image(getClass().getResourceAsStream("/icons/folder.png")));
             }
         } catch (Exception e) {
             e.printStackTrace();
